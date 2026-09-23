@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pythonPanelDocument>
+  <interface name="bess_houdini" label="Bess" icon="MISC_python">
+    <script><![CDATA[
+from bess_houdini.panel import BessPanel
+_widget = None
+
+def onCreateInterface():
+    global _widget
+    _widget = BessPanel()
+    return _widget
+
+def onDestroyInterface():
+    global _widget
+    if _widget is not None:
+        _widget.shutdown()
+        _widget = None
+]]></script>
+    <help><![CDATA[Bess — Houdini 内で Codex と会話し、現在のシーンを操作します。]]></help>
+    <includeInToolbarMenu menu_position="1" create_separator="false"/>
+    <includeInPaneTabMenu menu_position="1" create_separator="false"/>
+  </interface>
+</pythonPanelDocument>

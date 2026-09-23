@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <toolshelf name="bess_houdini" label="Bess"><memberTool name="bess_houdini_open"/></toolshelf>
+  <tool name="bess_houdini_open" label="Bess" icon="MISC_python">
+    <script scriptType="python"><![CDATA[import bess_houdini
+bess_houdini.show()]]></script>
+  </tool>
+</shelfDocument>
