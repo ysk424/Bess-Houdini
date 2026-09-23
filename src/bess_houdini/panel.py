@@ -121,6 +121,9 @@ class BessPanel(QtWidgets.QWidget):
         sendrow.addStretch()
         self.stop_button = self.button("停止", lambda: self.runtime.interrupt())
         sendrow.addWidget(self.stop_button)
+        self.paste_button = self.button("ペースト", self.paste_prompt)
+        self.paste_button.setToolTip("クリップボードの文章を入力欄に貼り付けます")
+        sendrow.addWidget(self.paste_button)
         self.send_button = self.button("送信", self.send)
         self.send_button.setStyleSheet("QPushButton {background: #86633a; color: white; padding: 7px 22px;}")
         sendrow.addWidget(self.send_button)
@@ -200,6 +203,10 @@ class BessPanel(QtWidgets.QWidget):
         self.effort.clear()
         self.effort.addItems([e["reasoningEffort"] for e in model.get("supportedReasoningEfforts", [])])
         self.effort.setCurrentText(selected if self.effort.findText(selected) >= 0 else model.get("defaultReasoningEffort", "medium"))
+
+    def paste_prompt(self):
+        self.prompt.paste()
+        self.prompt.setFocus(QtCore.Qt.MouseFocusReason)
 
     def send(self):
         text = self.prompt.toPlainText().strip()
